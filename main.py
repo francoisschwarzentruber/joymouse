@@ -166,12 +166,12 @@ actions = {
     'button-4': changeSpeed,
     'button-5': mousePressRightAction,
     'button-6': skip,
-    'button-7': skip,
-    'button-8': skip,
+    'button-7': keyAction(Key.ctrl),
+    'button-8': keyAction(Key.shift),
     'button-9': skip,
     'button-10': skip,
     'button-11': skip,
-    'button-12': keyAction('esc')
+    'button-12': skip
 }
 
 
@@ -180,6 +180,7 @@ def doActions():
     mouseMove(1, controls['y-axis'])
     for key in controls:
         if old_controls[key] != controls[key]:
+            print(key)
             actions[key](old_controls[key], controls[key])
 
 
@@ -189,11 +190,11 @@ def doActions():
 
 
 
-def keyEvent(keyDown, keyName):
-    if keyDown:
-    	pyautogui.keyDown(keyName)
+def keyEvent(isKeyDown, key):
+    if isKeyDown:
+    	keyboard.press(key)
     else:
-        pyautogui.keyUp(keyName)
+        keyboard.release(key)
 
 
 
